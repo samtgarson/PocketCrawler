@@ -9,17 +9,19 @@ import XCTest
 @testable import PocketCrawler_WatchKit_Extension
 
 class FloorplanTests: XCTestCase {
-    let plan = Floorplan(rng: MockRandomNumberGenerator())
+    let plan = Floorplan(size: 5, max: 15, rng: MockRandomNumberGenerator())
+    
+    func testDebugPrint() {
+        plan.debugPrint()
+    }
     
     func testGenerate() throws {
         let expected = [
-            [false, false, false, false, false, false, false],
-            [false, false, false, true,  false, false, false],
-            [false, true,  false, true,  false, true,  false],
-            [true,  true,  true,  true,  true,  true,  true ],
-            [false, true,  false, true,  false, true,  false],
-            [false, false, false, true,  false, false, false],
-            [false, false, false, false, false, false, false]
+            [false, true , true,  true , false],
+            [true , false, true,  false, false],
+            [true , true , true,  true , true ],
+            [true , false, true,  false, false],
+            [false, true , true,  true , false]
         ]
         
         for (y, row) in plan.enumerated() {
@@ -34,9 +36,15 @@ class FloorplanTests: XCTestCase {
     }
     
     func testEndRooms() throws {
-        let expected = [[1, 3], [5, 3], [3, 0], [2, 1], [4, 1], [3, 6], [2, 5], [4, 5]]
+        let expected = [[4, 2], [1, 0], [3, 0], [1, 4]]
         let result = plan.endRooms.map { [$0.x, $0.y] }
         XCTAssertEqual(expected, result)
+    }
+    
+    func testSpecialRooms() throws {
+        XCTAssertEqual(.boss, plan[0, 3]?.type)
+        XCTAssertEqual(.item, plan[0, 1]?.type)
+        XCTAssertEqual(.shop, plan[3, 4]?.type)
     }
     
     class MockRandomNumberGenerator : RandomNumberGenerator {

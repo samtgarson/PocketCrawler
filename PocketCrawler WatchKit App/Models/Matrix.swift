@@ -24,7 +24,7 @@ class Matrix<T> {
         return validLocation(row: loc.y, column: loc.x)
     }
     
-    subscript(row: Int, column: Int) -> T? {
+    subscript(column: Int, row: Int) -> T? {
         get {
             precondition(validLocation(row: row, column: column), "Index out of range")
             return grid[row][column]

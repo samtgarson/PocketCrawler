@@ -20,6 +20,7 @@
 		22931D8726B46EAF00B4C253 /* PocketCrawlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22931D8626B46EAF00B4C253 /* PocketCrawlerTests.swift */; };
 		22931D9126B46EAF00B4C253 /* PocketCrawlerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */; };
 		229D94BC26B72C630030E245 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D94BB26B72C630030E245 /* Room.swift */; };
+		229D94BF26B737E40030E245 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D94BE26B737E40030E245 /* Array.swift */; };
 		229F8CAA26B475A20076FC58 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CA926B475A20076FC58 /* Matrix.swift */; };
 		229F8CAD26B477CF0076FC58 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CAC26B476BC0076FC58 /* MatrixTests.swift */; };
 		229F8CAF26B4809D0076FC58 /* Floorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CAE26B4809D0076FC58 /* Floorplan.swift */; };
@@ -102,6 +103,7 @@
 		22931D8C26B46EAF00B4C253 /* PocketCrawlerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCrawlerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCrawlerUITests.swift; sourceTree = "<group>"; };
 		229D94BB26B72C630030E245 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		229D94BE26B737E40030E245 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		229F8CA926B475A20076FC58 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		229F8CAC26B476BC0076FC58 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		229F8CAE26B4809D0076FC58 /* Floorplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floorplan.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		22931D6126B46EAD00B4C253 /* PocketCrawler WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				229D94BD26B737D10030E245 /* Extensions */,
 				229F8CA826B4758A0076FC58 /* Models */,
 				22931D6226B46EAF00B4C253 /* Assets.xcassets */,
 			);
@@ -205,6 +208,14 @@
 				22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */,
 			);
 			path = PocketCrawlerUITests;
+			sourceTree = "<group>";
+		};
+		229D94BD26B737D10030E245 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				229D94BE26B737E40030E245 /* Array.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		229F8CA826B4758A0076FC58 /* Models */ = {
@@ -415,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22931D7226B46EAF00B4C253 /* NotificationController.swift in Sources */,
+				229D94BF26B737E40030E245 /* Array.swift in Sources */,
 				22931D7026B46EAF00B4C253 /* ContentView.swift in Sources */,
 				229F8CAA26B475A20076FC58 /* Matrix.swift in Sources */,
 				229F8CB326B5A7600076FC58 /* Coordinate.swift in Sources */,
