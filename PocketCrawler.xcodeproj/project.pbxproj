@@ -19,6 +19,12 @@
 		22931D7B26B46EAF00B4C253 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22931D7A26B46EAF00B4C253 /* Preview Assets.xcassets */; };
 		22931D8726B46EAF00B4C253 /* PocketCrawlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22931D8626B46EAF00B4C253 /* PocketCrawlerTests.swift */; };
 		22931D9126B46EAF00B4C253 /* PocketCrawlerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */; };
+		229D94BC26B72C630030E245 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D94BB26B72C630030E245 /* Room.swift */; };
+		229F8CAA26B475A20076FC58 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CA926B475A20076FC58 /* Matrix.swift */; };
+		229F8CAD26B477CF0076FC58 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CAC26B476BC0076FC58 /* MatrixTests.swift */; };
+		229F8CAF26B4809D0076FC58 /* Floorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CAE26B4809D0076FC58 /* Floorplan.swift */; };
+		229F8CB326B5A7600076FC58 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CB226B5A7600076FC58 /* Coordinate.swift */; };
+		229F8CB526B5D8710076FC58 /* FloorplanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CB426B5D8710076FC58 /* FloorplanTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +101,12 @@
 		22931D8626B46EAF00B4C253 /* PocketCrawlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCrawlerTests.swift; sourceTree = "<group>"; };
 		22931D8C26B46EAF00B4C253 /* PocketCrawlerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCrawlerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCrawlerUITests.swift; sourceTree = "<group>"; };
+		229D94BB26B72C630030E245 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		229F8CA926B475A20076FC58 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		229F8CAC26B476BC0076FC58 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
+		229F8CAE26B4809D0076FC58 /* Floorplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floorplan.swift; sourceTree = "<group>"; };
+		229F8CB226B5A7600076FC58 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		229F8CB426B5D8710076FC58 /* FloorplanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorplanTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +160,7 @@
 		22931D6126B46EAD00B4C253 /* PocketCrawler WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				229F8CA826B4758A0076FC58 /* Models */,
 				22931D6226B46EAF00B4C253 /* Assets.xcassets */,
 			);
 			path = "PocketCrawler WatchKit App";
@@ -180,6 +193,7 @@
 		22931D8526B46EAF00B4C253 /* PocketCrawlerTests */ = {
 			isa = PBXGroup;
 			children = (
+				229F8CAB26B476B80076FC58 /* Models */,
 				22931D8626B46EAF00B4C253 /* PocketCrawlerTests.swift */,
 			);
 			path = PocketCrawlerTests;
@@ -191,6 +205,26 @@
 				22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */,
 			);
 			path = PocketCrawlerUITests;
+			sourceTree = "<group>";
+		};
+		229F8CA826B4758A0076FC58 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				229F8CA926B475A20076FC58 /* Matrix.swift */,
+				229F8CAE26B4809D0076FC58 /* Floorplan.swift */,
+				229F8CB226B5A7600076FC58 /* Coordinate.swift */,
+				229D94BB26B72C630030E245 /* Room.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		229F8CAB26B476B80076FC58 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				229F8CB426B5D8710076FC58 /* FloorplanTests.swift */,
+				229F8CAC26B476BC0076FC58 /* MatrixTests.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,9 +416,13 @@
 			files = (
 				22931D7226B46EAF00B4C253 /* NotificationController.swift in Sources */,
 				22931D7026B46EAF00B4C253 /* ContentView.swift in Sources */,
+				229F8CAA26B475A20076FC58 /* Matrix.swift in Sources */,
+				229F8CB326B5A7600076FC58 /* Coordinate.swift in Sources */,
 				22931D7626B46EAF00B4C253 /* ComplicationController.swift in Sources */,
+				229D94BC26B72C630030E245 /* Room.swift in Sources */,
 				22931D6E26B46EAF00B4C253 /* PocketCrawlerApp.swift in Sources */,
 				22931D7426B46EAF00B4C253 /* NotificationView.swift in Sources */,
+				229F8CAF26B4809D0076FC58 /* Floorplan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +430,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229F8CB526B5D8710076FC58 /* FloorplanTests.swift in Sources */,
+				229F8CAD26B477CF0076FC58 /* MatrixTests.swift in Sources */,
 				22931D8726B46EAF00B4C253 /* PocketCrawlerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
