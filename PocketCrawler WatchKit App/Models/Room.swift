@@ -7,7 +7,14 @@
 
 import Foundation
 
-class Room {
+class Room : Identifiable {
+    let id = UUID()
+    let position: Coordinate
+    
+    init(position: Coordinate) {
+        self.position = position
+    }
+    
     enum RoomType {
         case boss, shop, item, normal
     }
@@ -28,4 +35,14 @@ class Room {
         }
     }
     #endif
+}
+
+extension Room : Hashable {
+    static func == (lhs: Room, rhs: Room) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

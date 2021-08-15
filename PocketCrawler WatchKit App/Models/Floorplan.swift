@@ -11,11 +11,14 @@ import CoreLocation
 
 /// https://www.boristhebrave.com/2020/09/12/dungeon-generation-in-binding-of-isaac/
 class Floorplan<R : RandomNumberGenerator>: Matrix<Room> {
-    init(size: Int = 7, max: Int = 15, rng: R) {
+    enum PlanSize { case Small, Medium, Large }
+    
+    init(size: PlanSize = .Small, rng: R) {
         self.rng = rng
-        self.minRooms = size
+        let (num, min, max) = Floorplan.getMeta(size)
+        self.minRooms = min
         self.maxRooms = max
-        super.init(rows: size, columns: size)
+        super.init(rows: num, columns: num)
         generate()
     }
     
@@ -25,17 +28,22 @@ class Floorplan<R : RandomNumberGenerator>: Matrix<Room> {
     private var roomCount = 0
     private let maxRooms: Int
     private let minRooms: Int
-    private let MAX_ITERATIONS = 1000
+    private let MAX_ITERATIONS = 500
     
     private func generate(_ iteration: Int = 0) {
-        precondition(iteration <= MAX_ITERATIONS, "Failed to generate plan in time")
+        precondition(iteration <= MAX_ITERATIONS, "Failed to generate plan in \(iteration) attempts")
         _ = visit(center)
         
         while queue.count > 0 {
             processLocation(queue.removeFirst())
         }
         
-        if roomCount < minRooms { generate(iteration + 1) }
+        if roomCount < minRooms {
+            reset()
+            self.queue = [Coordinate]()
+            self.endRooms = [Coordinate]()
+            generate(iteration + 1)
+        }
         
         assignSpecialRooms()
     }
@@ -59,7 +67,7 @@ class Floorplan<R : RandomNumberGenerator>: Matrix<Room> {
         if loc != center && Bool.random(using: &rng) { return false }
         
         queue.append(loc)
-        self[loc] = Room()
+        self[loc] = Room(position: loc)
         roomCount += 1
 
         return true
@@ -78,21 +86,32 @@ class Floorplan<R : RandomNumberGenerator>: Matrix<Room> {
     
     #if DEBUG
     func debugPrint() {
-        for (y, row) in self.enumerated() {
-            if y == 0 {
-                print("  0 1 2 3 4")
-            }
-            let row: [String] = row.map { room in
-                room?.debugLabel ?? "∙"
-            }
-            print("\(y) \(row.joined(separator: " "))")
+        print("  " + (0..<columns).map({ "\($0)" }).joined(separator: " "))
+        
+        for (y, row) in asRows().enumerated() {
+            let rowStr = row.map { $0?.debugLabel ?? "∙" }
+            
+            print("\(y) \(rowStr.joined(separator: " "))")
         }
     }
     #endif
+    
+    private static func getMeta(_ size: PlanSize) -> (Int, Int, Int) {
+        switch(size) {
+        case .Small:
+            return (5, 6, 15)
+        case .Medium:
+            return (7, 9, 15)
+        case .Large:
+            return (10, 10, 22)
+        }
+    }
 }
 
 extension Floorplan where R == SystemRandomNumberGenerator {
-    convenience init() {
-        self.init(rng: SystemRandomNumberGenerator())
+    convenience init(size: PlanSize = .Small) {
+        self.init(size: size, rng: SystemRandomNumberGenerator())
     }
 }
+
+typealias DefaultFloorplan = Floorplan<SystemRandomNumberGenerator>

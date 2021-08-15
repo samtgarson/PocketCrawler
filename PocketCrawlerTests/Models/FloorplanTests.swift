@@ -9,7 +9,7 @@ import XCTest
 @testable import PocketCrawler_WatchKit_Extension
 
 class FloorplanTests: XCTestCase {
-    let plan = Floorplan(size: 5, max: 15, rng: MockRandomNumberGenerator())
+    let plan = Floorplan(rng: MockRandomNumberGenerator())
     
     func testDebugPrint() {
         plan.debugPrint()
@@ -24,7 +24,7 @@ class FloorplanTests: XCTestCase {
             [false, true , true,  true , false]
         ]
         
-        for (y, row) in plan.enumerated() {
+        for (y, row) in plan.asRows().enumerated() {
             for (x, room) in row.enumerated() {
                 if expected[y][x] {
                     XCTAssertNotNil(room)

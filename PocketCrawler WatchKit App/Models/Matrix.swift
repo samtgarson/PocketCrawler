@@ -8,7 +8,7 @@
 class Matrix<T> {
     let rows: Int, columns: Int
     
-    var grid = [[T?]]()
+    var grid = [T?]()
     
     init(rows: Int, columns: Int) {
         self.rows = rows
@@ -27,11 +27,11 @@ class Matrix<T> {
     subscript(column: Int, row: Int) -> T? {
         get {
             precondition(validLocation(row: row, column: column), "Index out of range")
-            return grid[row][column]
+            return grid[row * self.rows + column]
         }
         set {
             precondition(validLocation(row: row, column: column), "Index out of range")
-            grid[row][column] = newValue
+            grid[row * self.rows + column] = newValue
         }
     }
     
@@ -50,7 +50,7 @@ class Matrix<T> {
         var dsc = ""
         for row in 0..<rows {
             for col in 0..<columns {
-                if let i = self[row,col] {
+                if let i = self[row, col] {
                     dsc += String(describing: i) + " "
                 } else {
                     dsc += "∙ "
@@ -62,7 +62,7 @@ class Matrix<T> {
     }
     
     func reset() {
-        grid = Array(repeating: Array(repeating: nil, count: columns), count: rows)
+        grid = Array(repeating: nil, count: rows * columns)
     }
     
     func neighbours(of loc: Coordinate) -> [T] {
@@ -73,8 +73,13 @@ class Matrix<T> {
     }
 }
 
-extension Matrix: Sequence {
-    func makeIterator() -> Array<[T?]>.Iterator {
-        return grid.makeIterator()
+extension Matrix {
+    
+    func asRows() -> [[T?]] {
+        return (0..<rows).map { row in
+            stride(from: row * columns, to: (row + 1) * columns, by: 1).map { index in
+                grid[index]
+            }
+        }
     }
-  }
+}
