@@ -11,6 +11,10 @@ struct Level: View {
     @ObservedObject var state: GameState
     
     var body: some View {
+        level
+    }
+    
+    private var level: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {
                 ForEach(state.plan.asRows(), id: \.self) { row in
@@ -36,7 +40,6 @@ struct Level: View {
 
 struct Level_Previews: PreviewProvider {
     static var previews: some View {
-        Level(state: GameState())
-            
+        Level(state: GameState(level: .Four))
     }
 }

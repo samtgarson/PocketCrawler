@@ -8,10 +8,10 @@
 import Foundation
 import CoreLocation
 
+enum PlanSize { case Small, Medium, Large }
 
 /// https://www.boristhebrave.com/2020/09/12/dungeon-generation-in-binding-of-isaac/
 class Floorplan<R : RandomNumberGenerator>: Matrix<Room> {
-    enum PlanSize { case Small, Medium, Large }
     
     init(size: PlanSize = .Small, rng: R) {
         self.rng = rng
@@ -99,11 +99,11 @@ class Floorplan<R : RandomNumberGenerator>: Matrix<Room> {
     private static func getMeta(_ size: PlanSize) -> (Int, Int, Int) {
         switch(size) {
         case .Small:
-            return (5, 6, 15)
+            return (4, 6, 10)
         case .Medium:
-            return (7, 9, 15)
+            return (5, 9, 15)
         case .Large:
-            return (10, 10, 22)
+            return (7, 12, 18)
         }
     }
 }
