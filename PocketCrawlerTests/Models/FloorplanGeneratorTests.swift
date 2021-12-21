@@ -8,11 +8,16 @@
 import XCTest
 @testable import PocketCrawler_WatchKit_Extension
 
-class FloorplanTests: XCTestCase {
-    let plan = Floorplan(rng: MockRandomNumberGenerator())
+class FloorplanGeneratorTests: XCTestCase {
+    let generator = FloorplanGenerator(rng: MockRandomNumberGenerator())
+    var plan: Floorplan!
+    
+    override func setUp() {
+        plan = generator.generate()
+    }
     
     func testDebugPrint() {
-        plan.debugPrint()
+        generator.debugPrint()
     }
     
     func testGenerate() throws {
@@ -37,7 +42,7 @@ class FloorplanTests: XCTestCase {
     
     func testEndRooms() throws {
         let expected = [[4, 2], [1, 0], [3, 0], [1, 4]]
-        let result = plan.endRooms.map { [$0.x, $0.y] }
+        let result = generator.endRooms.map { [$0.x, $0.y] }
         XCTAssertEqual(expected, result)
     }
     
@@ -45,6 +50,12 @@ class FloorplanTests: XCTestCase {
         XCTAssertEqual(.boss, plan[0, 3]?.type)
         XCTAssertEqual(.item, plan[0, 1]?.type)
         XCTAssertEqual(.shop, plan[3, 4]?.type)
+    }
+    
+    func testValidLocation() {
+        XCTAssertFalse(plan.validLocation(row: 0, column: -1))
+        XCTAssertFalse(plan.validLocation(row: 0, column: 0))
+        XCTAssertTrue(plan.validLocation(row: 0, column: 1))
     }
     
     class MockRandomNumberGenerator : RandomNumberGenerator {

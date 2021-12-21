@@ -7,10 +7,10 @@
 
 import Foundation
 
-class GameState : ObservableObject {
+class PositionState : ObservableObject {
     @Published var level: LevelNumber
     @Published var position: Coordinate!
-    @Published var plan: DefaultFloorplan!
+    @Published var plan: Floorplan!
     
     enum LevelNumber : Int {
         case One = 1, Two, Three, Four
@@ -30,8 +30,20 @@ class GameState : ObservableObject {
         createPlan()
     }
     
+    func move(_ direction: Direction) {
+        let newLoc = position.neighbour(direction)
+        precondition(currentRoom.canMove(in: direction), "Cannot move in that direction.")
+        
+        self.position = newLoc
+    }
+    
+    var currentRoom: RoomEntry {
+        guard let room = plan.at(position) else { preconditionFailure("Not allowed to be here") }
+        return room
+    }
+    
     private func createPlan() {
-        self.plan = Floorplan(size: size(for: self.level))
+        self.plan = FloorplanGenerator(size: size(for: self.level)).generate()
         self.position = self.plan.center
     }
     

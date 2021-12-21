@@ -10,7 +10,7 @@ import SwiftUI
 struct GridItem: View {
     let width: CGFloat
     let height: CGFloat
-    let room: Room?
+    let room: RoomEntry?
     var current: Bool = false
     
     var body: some View {
@@ -32,10 +32,12 @@ struct GridItem: View {
 
 struct GridItem_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            GridItem(width: 30, height: 30, room: Room(position: Coordinate(0, 0)))
+        let plan = Floorplan.with(size: .Small)
+        
+        return VStack {
+            GridItem(width: 30, height: 30, room: RoomEntry(position: Coordinate(0, 0), plan: plan))
             GridItem(width: 30, height: 30, room: nil)
-            GridItem(width: 30, height: 30, room: Room(position: Coordinate(0, 0)), current: true)
+            GridItem(width: 30, height: 30, room: RoomEntry(position: Coordinate(0, 0), plan: plan), current: true)
         }
     }
 }

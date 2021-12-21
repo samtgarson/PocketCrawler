@@ -24,6 +24,14 @@ class Matrix<T> {
         return validLocation(row: loc.y, column: loc.x)
     }
     
+    func exists(_ loc: Coordinate) -> Bool {
+        self[loc] != nil
+    }
+    
+    func at(_ loc: Coordinate) -> T? {
+        self[loc]
+    }
+    
     subscript(column: Int, row: Int) -> T? {
         get {
             precondition(validLocation(row: row, column: column), "Index out of range")

@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct Level: View {
-    @ObservedObject var state: GameState
+struct Map: View {
+    var plan: Floorplan
+    var position: Coordinate
     
     var body: some View {
         level
@@ -17,7 +18,7 @@ struct Level: View {
     private var level: some View {
         GeometryReader { geo in
             VStack(spacing: 0) {
-                ForEach(state.plan.asRows(), id: \.self) { row in
+                ForEach(plan.asRows(), id: \.self) { row in
                     HStack(spacing: 0) {
                         ForEach(row, id: \.self) { room in
                             item(for: room, with: geo)
@@ -28,18 +29,20 @@ struct Level: View {
         }
     }
     
-    private func item(for room: Room?, with geo: GeometryProxy) -> GridItem {
+    private func item(for room: RoomEntry?, with geo: GeometryProxy) -> GridItem {
         GridItem(
-            width: geo.size.width / CGFloat(state.plan.columns),
-            height: geo.size.height / CGFloat(state.plan.rows),
+            width: geo.size.width / CGFloat(plan.columns),
+            height: geo.size.height / CGFloat(plan.rows),
             room: room,
-            current: room?.position == state.position
+            current: room?.position == position
         )
     }
 }
 
-struct Level_Previews: PreviewProvider {
+struct Map_Previews: PreviewProvider {
     static var previews: some View {
-        Level(state: GameState(level: .Four))
+        PositionStateWrapper { state in
+            Map(plan: state.plan, position: state.position)
+        }
     }
 }

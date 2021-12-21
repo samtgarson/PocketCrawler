@@ -7,16 +7,23 @@
 
 import Foundation
 
-class Room : Identifiable {
+class RoomEntry : Identifiable {
     let id = UUID()
     let position: Coordinate
+    let plan: Floorplan
     
-    init(position: Coordinate) {
+    init(position: Coordinate, plan: Floorplan) {
         self.position = position
+        self.plan = plan
     }
     
     enum RoomType {
         case boss, shop, item, normal
+    }
+    
+    func canMove(in direction: Direction) -> Bool {
+        let loc = position.neighbour(direction)
+        return plan.validLocation(loc) && plan.exists(loc)
     }
     
     var type: RoomType = .normal
@@ -37,8 +44,8 @@ class Room : Identifiable {
     #endif
 }
 
-extension Room : Hashable {
-    static func == (lhs: Room, rhs: Room) -> Bool {
+extension RoomEntry : Hashable {
+    static func == (lhs: RoomEntry, rhs: RoomEntry) -> Bool {
         return lhs.id == rhs.id
     }
     

@@ -6,38 +6,44 @@
 //
 
 import Foundation
+import CoreGraphics
+
+enum Direction: CaseIterable {
+    case up, down, left, right
+}
+
+enum Axis {
+    case horizontal, vertical
+}
 
 class Coordinate {
     let x: Int
     let y: Int
-    
-    static var cardinals: [KeyPath<Coordinate, Coordinate>] {
-        [\.up, \.down, \.left, \.right]
-    }
     
     init(_ x: Int, _ y: Int) {
         self.x = x
         self.y = y
     }
     
-    var up: Coordinate {
-        return Coordinate(x, y - 1)
-    }
-    
-    var down: Coordinate {
-        return Coordinate(x, y + 1)
-    }
-    
-    var left: Coordinate {
-        return Coordinate(x - 1, y)
-    }
-    
-    var right: Coordinate {
-        return Coordinate(x + 1, y)
-    }
-    
     var neighbours: [Coordinate] {
-        Coordinate.cardinals.map { self[keyPath: $0] }
+        Direction.allCases.map { neighbour($0) }
+    }
+    
+    var size: CGSize {
+        CGSize(width: x, height: y)
+    }
+    
+    func neighbour(_ direction: Direction) -> Coordinate {
+        switch direction {
+        case .up:
+            return Coordinate(x, y - 1)
+        case .down:
+            return Coordinate(x, y + 1)
+        case .left:
+            return Coordinate(x - 1, y)
+        case .right:
+            return Coordinate(x + 1, y)
+        }
     }
 }
 
