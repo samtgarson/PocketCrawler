@@ -9,14 +9,14 @@ import SwiftUI
 
 struct Room: View {
     var room: RoomEntry
-    var onMove: (Direction) -> Void = {_ in }
+    var act: (MapAction) -> Void = {_ in }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 4) {
             wall(.up)
-            HStack {
+            HStack(spacing: 4) {
                 wall(.left)
-                RoundedRectangle(cornerRadius: 15)
+                contents
                 wall(.right)
             }
             wall(.down)
@@ -25,23 +25,30 @@ struct Room: View {
     
     private func wall(_ dir: Direction) -> some View {
         Wall(dir: dir, canMove: room.canMove(in: dir)) {
-            onMove(dir)
+            act(.move(dir))
+        }
+    }
+    
+    var contents: some View {
+        Group {
+            switch room.type {
+            case .boss:
+                BossRoom { act(.nextFloor) }
+            case .shop:
+                RoundedRectangle(cornerRadius: 15)
+            case .item:
+                RoundedRectangle(cornerRadius: 15)
+            case .normal:
+                RoundedRectangle(cornerRadius: 15)
+            }
         }
     }
 }
 
 struct BaseRoom_Previews: PreviewProvider {
     static var previews: some View {
-        BaseRoomPreview()
-    }
-    
-    struct BaseRoomPreview: View {
-        @ObservedObject var state = PositionState()
-        
-        var body: some View {
-            Room(room: state.currentRoom) { dir in
-                state.move(dir)
-            }
+        CoreStateWrapper { state in
+            Room(room: state.currentRoom)
         }
     }
 }

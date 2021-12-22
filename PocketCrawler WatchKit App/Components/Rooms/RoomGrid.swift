@@ -10,13 +10,13 @@ import SwiftUI
 struct RoomGrid: View {
     var plan: Floorplan
     var currentRoom: RoomEntry
-    var move: (Direction) -> Void
+    var act: (MapAction) -> Void
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 ForEach(plan.allRooms) { r in
-                    Room(room: r, onMove: move) 
+                    Room(room: r, act: act)
                     .opacity(r == currentRoom ? 1 : 0)
                     .offset(roomOffset(for: r, in: geo.size))
                 }
@@ -45,8 +45,15 @@ struct RoomGrid: View {
 
 struct RoomGrid_Previews: PreviewProvider {
     static var previews: some View {
-        PositionStateWrapper { state in        
-            RoomGrid(plan: state.plan, currentRoom: state.currentRoom, move: state.move)
+        CoreStateWrapper { state in        
+            RoomGrid(plan: state.plan, currentRoom: state.currentRoom, act: {
+                switch $0 {
+                case .move(let dir):
+                    state.move(dir)
+                default:
+                    debugPrint("\($0)")
+                }
+            })
         }
     }
 }

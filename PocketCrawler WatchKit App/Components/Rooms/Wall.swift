@@ -15,13 +15,20 @@ struct Wall: View {
     let THICKNESS: CGFloat = 5
     
     var body: some View {
-        let (width, height) = frame
-        
-        return ZStack {
-            if canMove {
-                door
-            }
-        }.frame(width: width, height: height, alignment: .center).fixedSize()
+        switch dir {
+        case .left, .right:
+            VStack {
+                Spacer()
+                if canMove { door }
+                Spacer()
+            }.frame(width: THICKNESS)
+        case .up, .down:
+            HStack {
+                Spacer()
+                if canMove { door }
+                Spacer()
+            }.frame(height: THICKNESS)
+        }
     }
     
     var door: some View {
@@ -33,27 +40,23 @@ struct Wall: View {
             .onTapGesture(perform: onTap)
     }
     
-    var doorFrame: (CGFloat, CGFloat) {
+    var doorFrame: (CGFloat?, CGFloat?) {
         switch dir {
         case .left, .right:
-            return (.infinity, 40)
+            return (nil, 40)
         case .up, .down:
-            return (40, .infinity)
-        }
-    }
-    
-    var frame: (CGFloat, CGFloat) {
-        switch dir {
-        case .left, .right:
-            return (THICKNESS, .infinity)
-        case .up, .down:
-            return (.infinity, THICKNESS)
+            return (40, nil)
         }
     }
 }
 
 struct Door_Previews: PreviewProvider {
     static var previews: some View {
-        Wall(dir: .up, canMove: true) { debugPrint("Tapped!") }
+        Group {
+            Wall(dir: .up, canMove: true) { debugPrint("Tapped!") }
+            Wall(dir: .left, canMove: true) { debugPrint("Tapped!") }
+            Wall(dir: .up, canMove: false) { debugPrint("Tapped!") }
+            Wall(dir: .left, canMove: false) { debugPrint("Tapped!") }
+        }.background(.gray)
     }
 }

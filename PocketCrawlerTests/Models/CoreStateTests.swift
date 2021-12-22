@@ -8,8 +8,8 @@
 import XCTest
 @testable import PocketCrawler_WatchKit_Extension
 
-class PositionStateTests: XCTestCase {
-    var state = PositionState()
+class CoreStateTests: XCTestCase {
+    var state = CoreState()
     
     func testInit() {
         XCTAssertEqual(state.position, state.plan.center)

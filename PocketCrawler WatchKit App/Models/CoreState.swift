@@ -7,14 +7,11 @@
 
 import Foundation
 
-class PositionState : ObservableObject {
+class CoreState : ObservableObject {
+    @Published var playState: PlayState = .playing
     @Published var level: LevelNumber
     @Published var position: Coordinate!
     @Published var plan: Floorplan!
-    
-    enum LevelNumber : Int {
-        case One = 1, Two, Three, Four
-    }
     
     init(level: LevelNumber = .One) {
         self.level = level
@@ -26,8 +23,14 @@ class PositionState : ObservableObject {
               let level = LevelNumber(rawValue: level.rawValue + 1)
               else { return }
         
+        self.playState = .cutScene(.nextLevel(level))
         self.level = level
-        createPlan()
+        DispatchQueue.main.asyncAfter(deadline: .now() + CUTSCENE_LENGTH) { [weak self] in
+            guard let self = self else { return }
+            
+            self.playState = .playing
+            self.createPlan()
+        }
     }
     
     func move(_ direction: Direction) {

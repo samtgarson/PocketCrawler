@@ -41,7 +41,7 @@ struct Map: View {
 
 struct Map_Previews: PreviewProvider {
     static var previews: some View {
-        PositionStateWrapper { state in
+        CoreStateWrapper { state in
             Map(plan: state.plan, position: state.position)
         }
     }
