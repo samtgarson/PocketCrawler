@@ -47,7 +47,7 @@ struct Room: View {
 
 struct BaseRoom_Previews: PreviewProvider {
     static var previews: some View {
-        CoreStateWrapper { state in
+        PreviewWrapper { state in
             Room(room: state.currentRoom)
         }
     }

@@ -12,10 +12,12 @@ enum LevelNumber : Int, Equatable {
 }
 
 enum CutScene : Equatable {
+    case newAdventure
     case nextLevel(LevelNumber)
 }
 
 enum PlayState : Equatable {
     case cutScene(CutScene)
     case playing
+    case complete
 }

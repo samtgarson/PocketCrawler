@@ -7,20 +7,27 @@
 
 import SwiftUI
 
-struct CoreStateWrapper<Content : View>: View {
-    @ObservedObject var state = CoreState()
+struct PreviewWrapper<Content : View>: View {
+    init(level: LevelNumber = .One, children: @escaping (CoreState) -> Content) {
+        self.level = level
+        self.state = CoreState(level: level)
+        self.children = children
+    }
+    
+    var level: LevelNumber
+    @State var state: CoreState
     @ViewBuilder var children: (CoreState) -> Content
     
     var body: some View {
         Group {
             children(state)
-        }
+        }.environmentObject(Router())
     }
 }
 
 struct CoreStateWrapper_Previews: PreviewProvider {
     static var previews: some View {
-        CoreStateWrapper() { _ in
+        PreviewWrapper() { _ in
             Text("hello")
         }
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let CUTSCENE_LENGTH = 2.0
+let CUTSCENE_LENGTH = 3.0
 
 struct CutSceneRenderer: View {
     var scene: CutScene
@@ -22,6 +22,8 @@ struct CutSceneRenderer: View {
     
     var contents: some View {
         switch scene {
+        case .newAdventure:
+            return Text("A new adventure begins").foregroundColor(.white)
         case .nextLevel(let level):
             return Text("Going to level \(level.rawValue)").foregroundColor(.white)
         }

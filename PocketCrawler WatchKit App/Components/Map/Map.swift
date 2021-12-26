@@ -12,36 +12,38 @@ struct Map: View {
     var position: Coordinate
     
     var body: some View {
-        level
+        TabView {
+            level.tabItem { Text("Map") }
+            InGameMenu().tabItem { Text("Menu") }
+        }
     }
     
     private var level: some View {
         GeometryReader { geo in
-            VStack(spacing: 0) {
-                ForEach(plan.asRows(), id: \.self) { row in
-                    HStack(spacing: 0) {
-                        ForEach(row, id: \.self) { room in
-                            item(for: room, with: geo)
-                        }
-                    }
+            Group {
+                ForEach(plan.allRooms, id: \.id) { room in
+                    item(for: room, with: geo)
                 }
             }
         }
     }
     
-    private func item(for room: RoomEntry?, with geo: GeometryProxy) -> GridItem {
-        GridItem(
-            width: geo.size.width / CGFloat(plan.columns),
-            height: geo.size.height / CGFloat(plan.rows),
+    private func item(for room: RoomEntry, with geo: GeometryProxy) -> some View {
+        let width = geo.size.width / CGFloat(plan.columns)
+        let height = geo.size.height / CGFloat(plan.rows)
+        
+        return GridItem(
+            width: width,
+            height: height,
             room: room,
-            current: room?.position == position
-        )
+            current: room.position == position
+        ).offset(x: width * CGFloat(room.position.x), y: height * CGFloat(room.position.y))
     }
 }
 
 struct Map_Previews: PreviewProvider {
     static var previews: some View {
-        CoreStateWrapper { state in
+        PreviewWrapper { state in
             Map(plan: state.plan, position: state.position)
         }
     }

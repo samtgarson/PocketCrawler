@@ -8,21 +8,38 @@
 import SwiftUI
 
 struct GameRenderer: View {
-    @ObservedObject var state = CoreState()
+    @StateObject var state = CoreState()
     @State var crown = 0.0
     
     let ROTATION = 50.0
     
     var body: some View {
-        ZStack {
-            if state.playState == .playing { game }
-            if case .cutScene(let scene) = state.playState { cutScene(scene) }
+        ScreenSize { size in
+            ZStack {
+                if state.playState == .complete {
+                    completeScreen
+                        .frame(width: size.width, height: size.height)
+                }
+                if state.playState == .playing {
+                    game
+                        .frame(width: size.width, height: size.height)
+                }
+                if case .cutScene(let scene) = state.playState {
+                    cutScene(scene)
+                        .frame(width: size.width, height: size.height)
+                }
+            }
         }
     }
     
     private func cutScene(_ scene: CutScene) -> some View {
         CutSceneRenderer(scene: scene)
-            .transition(.opacity.animation(.easeOut.delay(0.3)))
+            .transition(cutSceneTransition)
+    }
+    
+    private var completeScreen: some View {
+        CompleteScreen()
+            .transition(.opacity)
     }
     
     private var game: some View {
@@ -36,8 +53,7 @@ struct GameRenderer: View {
                 from: 0,
                 through: ROTATION,
                 by: ROTATION,
-                sensitivity: .medium,
-                isContinuous: false
+                sensitivity: .medium
             )
             .transition(gameTransition)
     }
@@ -63,16 +79,22 @@ struct GameRenderer: View {
         }
     }
     
+    var cutSceneTransition: AnyTransition {
+        .opacity.animation(.easeOut.delay(0.3))
+    }
+    
     var gameTransition: AnyTransition {
-        let insertion = AnyTransition.opacity.combined(with: .scale(scale: 0.5)).animation(.easeOut(duration: 0.5).delay(1))
-        let removal = AnyTransition.opacity.combined(with: .scale(scale: 1.5)).animation(.easeOut(duration: 0.5))
-        
-        return .asymmetric(insertion: insertion, removal: removal)
+        .asymmetric(
+            insertion: .opacity.combined(with: .scale(scale: 0.5)).animation(.easeOut(duration: 0.5).delay(1)),
+            removal: .opacity.combined(with: .scale(scale: 1.5)).animation(.easeOut(duration: 0.5))
+        )
     }
 }
 
 struct Renderer_Previews: PreviewProvider {
     static var previews: some View {
-        GameRenderer(state: CoreState())
+        PreviewWrapper { state in
+            GameRenderer(state: state)
+        }
     }
 }

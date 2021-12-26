@@ -14,7 +14,7 @@ struct RoomGrid: View {
     
     var body: some View {
         GeometryReader { geo in
-            ZStack {
+            Group {
                 ForEach(plan.allRooms) { r in
                     Room(room: r, act: act)
                     .opacity(r == currentRoom ? 1 : 0)
@@ -45,11 +45,11 @@ struct RoomGrid: View {
 
 struct RoomGrid_Previews: PreviewProvider {
     static var previews: some View {
-        CoreStateWrapper { state in        
+        PreviewWrapper { state in        
             RoomGrid(plan: state.plan, currentRoom: state.currentRoom, act: {
                 switch $0 {
                 case .move(let dir):
-                    state.move(dir)
+                    withAnimation { state.move(dir) }
                 default:
                     debugPrint("\($0)")
                 }

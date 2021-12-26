@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		220A2873276E8C8A00BCA618 /* CoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A2872276E8C8A00BCA618 /* CoreStateTests.swift */; };
 		222F47DA26B74B97001F1D60 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222F47D926B74B97001F1D60 /* Map.swift */; };
+		223550CA277508E30005F747 /* InGameMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223550C9277508E30005F747 /* InGameMenu.swift */; };
 		223B1BAE26C9B2FD0032224D /* CoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B1BAD26C9B2FD0032224D /* CoreState.swift */; };
 		223CA64C277146CA00AD2B2D /* RoomGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223CA64B277146CA00AD2B2D /* RoomGrid.swift */; };
 		2252449B276EA92000AAD000 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2252449A276EA92000AAD000 /* Room.swift */; };
@@ -27,6 +28,7 @@
 		22931D7B26B46EAF00B4C253 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22931D7A26B46EAF00B4C253 /* Preview Assets.xcassets */; };
 		22931D8726B46EAF00B4C253 /* PocketCrawlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22931D8626B46EAF00B4C253 /* PocketCrawlerTests.swift */; };
 		22931D9126B46EAF00B4C253 /* PocketCrawlerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */; };
+		22936EE62778CD2C00283FD3 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22936EE52778CD2C00283FD3 /* ScreenSize.swift */; };
 		229D94BC26B72C630030E245 /* RoomEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D94BB26B72C630030E245 /* RoomEntry.swift */; };
 		229D94BF26B737E40030E245 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D94BE26B737E40030E245 /* Array.swift */; };
 		229F8CAA26B475A20076FC58 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CA926B475A20076FC58 /* Matrix.swift */; };
@@ -34,11 +36,15 @@
 		229F8CAF26B4809D0076FC58 /* Floorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CAE26B4809D0076FC58 /* Floorplan.swift */; };
 		229F8CB326B5A7600076FC58 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CB226B5A7600076FC58 /* Coordinate.swift */; };
 		229F8CB526B5D8710076FC58 /* FloorplanGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F8CB426B5D8710076FC58 /* FloorplanGeneratorTests.swift */; };
-		22A89BAC27727733002604FE /* CoreStateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BAB27727733002604FE /* CoreStateWrapper.swift */; };
+		22A89BAC27727733002604FE /* PreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BAB27727733002604FE /* PreviewWrapper.swift */; };
 		22A89BAF277331EA002604FE /* MapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BAE277331EA002604FE /* MapAction.swift */; };
 		22A89BB127734A00002604FE /* BossRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BB027734A00002604FE /* BossRoom.swift */; };
 		22A89BB327736EBB002604FE /* PlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BB227736EBB002604FE /* PlayState.swift */; };
 		22A89BB7277377C6002604FE /* CutSceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BB6277377C6002604FE /* CutSceneRenderer.swift */; };
+		22A89BB927738580002604FE /* CompleteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BB82773857F002604FE /* CompleteScreen.swift */; };
+		22A89BBB2773AE58002604FE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BBA2773AE58002604FE /* Router.swift */; };
+		22A89BBE2773AEB8002604FE /* Garden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BBD2773AEB8002604FE /* Garden.swift */; };
+		22A89BC22773AEDB002604FE /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A89BC12773AEDB002604FE /* MainMenu.swift */; };
 		22EFC2D826C977D000BD918A /* GridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EFC2D726C977D000BD918A /* GridItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +107,7 @@
 /* Begin PBXFileReference section */
 		220A2872276E8C8A00BCA618 /* CoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStateTests.swift; sourceTree = "<group>"; };
 		222F47D926B74B97001F1D60 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		223550C9277508E30005F747 /* InGameMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameMenu.swift; sourceTree = "<group>"; };
 		223B1BAD26C9B2FD0032224D /* CoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreState.swift; sourceTree = "<group>"; };
 		223CA64B277146CA00AD2B2D /* RoomGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomGrid.swift; sourceTree = "<group>"; };
 		2252449A276EA92000AAD000 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -124,6 +131,7 @@
 		22931D8626B46EAF00B4C253 /* PocketCrawlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCrawlerTests.swift; sourceTree = "<group>"; };
 		22931D8C26B46EAF00B4C253 /* PocketCrawlerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCrawlerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22931D9026B46EAF00B4C253 /* PocketCrawlerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCrawlerUITests.swift; sourceTree = "<group>"; };
+		22936EE52778CD2C00283FD3 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		229D94BB26B72C630030E245 /* RoomEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomEntry.swift; sourceTree = "<group>"; };
 		229D94BE26B737E40030E245 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		229F8CA926B475A20076FC58 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -131,11 +139,15 @@
 		229F8CAE26B4809D0076FC58 /* Floorplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floorplan.swift; sourceTree = "<group>"; };
 		229F8CB226B5A7600076FC58 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		229F8CB426B5D8710076FC58 /* FloorplanGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorplanGeneratorTests.swift; sourceTree = "<group>"; };
-		22A89BAB27727733002604FE /* CoreStateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStateWrapper.swift; sourceTree = "<group>"; };
+		22A89BAB27727733002604FE /* PreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWrapper.swift; sourceTree = "<group>"; };
 		22A89BAE277331EA002604FE /* MapAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAction.swift; sourceTree = "<group>"; };
 		22A89BB027734A00002604FE /* BossRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossRoom.swift; sourceTree = "<group>"; };
 		22A89BB227736EBB002604FE /* PlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayState.swift; sourceTree = "<group>"; };
 		22A89BB6277377C6002604FE /* CutSceneRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutSceneRenderer.swift; sourceTree = "<group>"; };
+		22A89BB82773857F002604FE /* CompleteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteScreen.swift; sourceTree = "<group>"; };
+		22A89BBA2773AE58002604FE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		22A89BBD2773AEB8002604FE /* Garden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garden.swift; sourceTree = "<group>"; };
+		22A89BC12773AEDB002604FE /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		22EFC2D726C977D000BD918A /* GridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,10 +179,13 @@
 		222F47D726B74AFA001F1D60 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				22A89BBC2773AEAB002604FE /* Home */,
 				2252449C276F6A6800AAD000 /* Rooms */,
 				222F47D826B74B00001F1D60 /* Map */,
 				22916F91276FD628004D678C /* GameRenderer.swift */,
+				22A89BB82773857F002604FE /* CompleteScreen.swift */,
 				22A89BB6277377C6002604FE /* CutSceneRenderer.swift */,
+				22936EE52778CD2C00283FD3 /* ScreenSize.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -180,6 +195,7 @@
 			children = (
 				222F47D926B74B97001F1D60 /* Map.swift */,
 				22EFC2D726C977D000BD918A /* GridItem.swift */,
+				223550C9277508E30005F747 /* InGameMenu.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -250,7 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				22931D7A26B46EAF00B4C253 /* Preview Assets.xcassets */,
-				22A89BAB27727733002604FE /* CoreStateWrapper.swift */,
+				22A89BAB27727733002604FE /* PreviewWrapper.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -289,6 +305,7 @@
 				229F8CB226B5A7600076FC58 /* Coordinate.swift */,
 				229D94BB26B72C630030E245 /* RoomEntry.swift */,
 				223B1BAD26C9B2FD0032224D /* CoreState.swift */,
+				22A89BBA2773AE58002604FE /* Router.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +327,15 @@
 				22A89BB227736EBB002604FE /* PlayState.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		22A89BBC2773AEAB002604FE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				22A89BBD2773AEB8002604FE /* Garden.swift */,
+				22A89BC12773AEDB002604FE /* MainMenu.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,15 +526,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				22931D7226B46EAF00B4C253 /* NotificationController.swift in Sources */,
+				223550CA277508E30005F747 /* InGameMenu.swift in Sources */,
 				222F47DA26B74B97001F1D60 /* Map.swift in Sources */,
+				22A89BBB2773AE58002604FE /* Router.swift in Sources */,
 				22A89BAF277331EA002604FE /* MapAction.swift in Sources */,
 				223CA64C277146CA00AD2B2D /* RoomGrid.swift in Sources */,
 				2252449B276EA92000AAD000 /* Room.swift in Sources */,
+				22A89BC22773AEDB002604FE /* MainMenu.swift in Sources */,
+				22936EE62778CD2C00283FD3 /* ScreenSize.swift in Sources */,
 				223B1BAE26C9B2FD0032224D /* CoreState.swift in Sources */,
 				229D94BF26B737E40030E245 /* Array.swift in Sources */,
 				22931D7026B46EAF00B4C253 /* ContentView.swift in Sources */,
 				229F8CAA26B475A20076FC58 /* Matrix.swift in Sources */,
 				225244A0276F76E300AAD000 /* FloorplanGenerator.swift in Sources */,
+				22A89BB927738580002604FE /* CompleteScreen.swift in Sources */,
 				229F8CB326B5A7600076FC58 /* Coordinate.swift in Sources */,
 				22EFC2D826C977D000BD918A /* GridItem.swift in Sources */,
 				22931D7626B46EAF00B4C253 /* ComplicationController.swift in Sources */,
@@ -517,8 +548,9 @@
 				22A89BB7277377C6002604FE /* CutSceneRenderer.swift in Sources */,
 				22931D6E26B46EAF00B4C253 /* PocketCrawlerApp.swift in Sources */,
 				22931D7426B46EAF00B4C253 /* NotificationView.swift in Sources */,
-				22A89BAC27727733002604FE /* CoreStateWrapper.swift in Sources */,
+				22A89BAC27727733002604FE /* PreviewWrapper.swift in Sources */,
 				22916F92276FD628004D678C /* GameRenderer.swift in Sources */,
+				22A89BBE2773AEB8002604FE /* Garden.swift in Sources */,
 				2252449E276F6A7E00AAD000 /* Wall.swift in Sources */,
 				229F8CAF26B4809D0076FC58 /* Floorplan.swift in Sources */,
 				22A89BB327736EBB002604FE /* PlayState.swift in Sources */,

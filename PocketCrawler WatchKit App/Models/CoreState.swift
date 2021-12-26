@@ -8,7 +8,7 @@
 import Foundation
 
 class CoreState : ObservableObject {
-    @Published var playState: PlayState = .playing
+    @Published var playState: PlayState = .cutScene(.newAdventure)
     @Published var level: LevelNumber
     @Published var position: Coordinate!
     @Published var plan: Floorplan!
@@ -16,12 +16,20 @@ class CoreState : ObservableObject {
     init(level: LevelNumber = .One) {
         self.level = level
         createPlan()
+        DispatchQueue.main.asyncAfter(deadline: .now() + CUTSCENE_LENGTH) { [weak self] in
+            guard let self = self else { return }
+            
+            self.playState = .playing
+        }
     }
     
     func nextLevel() {
         guard level != .Four,
               let level = LevelNumber(rawValue: level.rawValue + 1)
-              else { return }
+              else {
+                  self.playState = .complete
+                  return
+              }
         
         self.playState = .cutScene(.nextLevel(level))
         self.level = level
